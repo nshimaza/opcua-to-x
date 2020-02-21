@@ -12,11 +12,11 @@ instantiate_robot_rest_nodes(UA_Server *server, app_context_t* ctx) {
     attr.displayName = UA_LOCALIZEDTEXT("en-US", "MotionDeviceSystem");
     UA_NodeId motionDeviceSystemNodeId;
     UA_StatusCode err = UA_Server_addObjectNode(server, UA_NODEID_NULL,
-                            UA_NODEID_NUMERIC(ctx->ns.ns_di, 5001),    /* Parent is DeviceSet */
-                            UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
-                            UA_QUALIFIEDNAME(1, "MotionDeviceSystem"),
-                            UA_NODEID_NUMERIC(ctx->ns.ns_robot, 1002), /* Type is MotionDeviceSystemType */
-                            attr, NULL, &motionDeviceSystemNodeId);
+                                                UA_NODEID_NUMERIC(ctx->ns.ns_di, 5001),    /* Parent is DeviceSet */
+                                                UA_NODEID_NUMERIC(0, UA_NS0ID_ORGANIZES),
+                                                UA_QUALIFIEDNAME(1, "MotionDeviceSystem"),
+                                                UA_NODEID_NUMERIC(ctx->ns.ns_robot, 1002), /* Type is MotionDeviceSystemType */
+                                                attr, NULL, &motionDeviceSystemNodeId);
     assert(err == UA_STATUSCODE_GOOD);
     /*
      * Lookup child FolderType object 'Controllers'.  Controllers is
@@ -120,9 +120,9 @@ instantiate_robot_rest_nodes(UA_Server *server, app_context_t* ctx) {
          */
         UA_NodeId axesNodeId;
         find_node_id(server, &axesNodeId, motionDeviceNodeId, UA_QUALIFIEDNAME(ctx->ns.ns_robot, "Axes"));
-        for (int k = 0; k < MAX_AXES; k++) {
+        for (int j = 0; j < MAX_AXES; j++) {
             char axis_name[20];
-            snprintf(axis_name, sizeof axis_name, "Axis%d", k + 1);
+            snprintf(axis_name, sizeof axis_name, "Axis%d", j + 1);
             attr = UA_ObjectAttributes_default;
             attr.displayName = UA_LOCALIZEDTEXT("en-US", axis_name);
             UA_NodeId axisNodeId;
